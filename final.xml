@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.2.11
+- http://www.phpmyadmin.net
+-
+- Servidor: 127.0.0.1
+- Tiempo de generación: 09-07-2015 a las 03:47:36
+- Versión del servidor: 5.6.21
+- Versión de PHP: 5.6.3
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="final" collation="latin1_swedish_ci" charset="latin1">
+            <pma:table name="comentarios">
+                CREATE TABLE `comentarios` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `texto` varchar(140) NOT NULL,
+                  `user` varchar(30) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `user` (`user`),
+                  CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`user`) REFERENCES `usuario` (`user`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="seguidores">
+                CREATE TABLE `seguidores` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `user_seguidor` varchar(30) NOT NULL,
+                  `user_seguido` varchar(30) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `user_seguidor` (`user_seguidor`,`user_seguido`),
+                  KEY `user_seguido` (`user_seguido`),
+                  CONSTRAINT `seguidores_ibfk_1` FOREIGN KEY (`user_seguidor`) REFERENCES `usuario` (`user`),
+                  CONSTRAINT `seguidores_ibfk_2` FOREIGN KEY (`user_seguido`) REFERENCES `usuario` (`user`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="usuario">
+                CREATE TABLE `usuario` (
+                  `user` varchar(30) NOT NULL,
+                  `pass` varchar(30) NOT NULL,
+                  `nombre` varchar(30) NOT NULL,
+                  PRIMARY KEY (`user`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="vinculohashtag">
+                CREATE TABLE `vinculohashtag` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `id_comentario` int(11) NOT NULL,
+                  `hashtag` varchar(30) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `id_comentario` (`id_comentario`),
+                  CONSTRAINT `vinculohashtag_ibfk_1` FOREIGN KEY (`id_comentario`) REFERENCES `comentarios` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+            </pma:table>
+            <pma:table name="vinculouser">
+                CREATE TABLE `vinculouser` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `id_comentario` int(11) NOT NULL,
+                  `user` varchar(30) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `id_comentario` (`id_comentario`,`user`),
+                  KEY `user` (`user`),
+                  CONSTRAINT `vinculouser_ibfk_1` FOREIGN KEY (`id_comentario`) REFERENCES `comentarios` (`id`),
+                  CONSTRAINT `vinculouser_ibfk_2` FOREIGN KEY (`user`) REFERENCES `usuario` (`user`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Base de datos: 'final'
+    -->
+    <database name="final">
+        <!-- Tabla comentarios -->
+        <table name="comentarios">
+            <column name="id">30</column>
+            <column name="texto">comentario de YERKO 1</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">31</column>
+            <column name="texto">asdasd #trabajoPrgr2</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">32</column>
+            <column name="texto">qweqweqweqwe #trabajoPrgr2</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">37</column>
+            <column name="texto">otro #otro</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">38</column>
+            <column name="texto">andres co #trabajoPrgr2</column>
+            <column name="user">andres</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">39</column>
+            <column name="texto">coment juan #otro</column>
+            <column name="user">juan</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">40</column>
+            <column name="texto">comen seg juan</column>
+            <column name="user">juan</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">65</column>
+            <column name="texto">asd @andres adaweqw</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">66</column>
+            <column name="texto">asd @andres ajajajajh</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">67</column>
+            <column name="texto">Esdfsdfsdf</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">68</column>
+            <column name="texto">etiqueto a @yerkoandrei</column>
+            <column name="user">andres</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">69</column>
+            <column name="texto">otra vez a @yerkoandrei</column>
+            <column name="user">andres</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">70</column>
+            <column name="texto">yo mismo @juan</column>
+            <column name="user">juan</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">76</column>
+            <column name="texto">comen seg juan
+ Tuit anterior de: juan</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">77</column>
+            <column name="texto">otra vez a @yerkoandrei
+ Tuit anterior de: andres</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">78</column>
+            <column name="texto">etiqueto a @yerkoandrei
+ Tuit anterior de: andres</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">79</column>
+            <column name="texto">wewewewewe #trabajoPrgr2</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">80</column>
+            <column name="texto">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="comentarios">
+            <column name="id">81</column>
+            <column name="texto">comentario con todo #otro @andres</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <!-- Tabla seguidores -->
+        <table name="seguidores">
+            <column name="id">19</column>
+            <column name="user_seguidor">andres</column>
+            <column name="user_seguido">juan</column>
+        </table>
+        <table name="seguidores">
+            <column name="id">20</column>
+            <column name="user_seguidor">juan</column>
+            <column name="user_seguido">andres</column>
+        </table>
+        <table name="seguidores">
+            <column name="id">17</column>
+            <column name="user_seguidor">yerkoandrei</column>
+            <column name="user_seguido">andres</column>
+        </table>
+        <table name="seguidores">
+            <column name="id">18</column>
+            <column name="user_seguidor">yerkoandrei</column>
+            <column name="user_seguido">juan</column>
+        </table>
+        <!-- Tabla usuario -->
+        <table name="usuario">
+            <column name="user">andres</column>
+            <column name="pass">123</column>
+            <column name="nombre">andres molina</column>
+        </table>
+        <table name="usuario">
+            <column name="user">juan</column>
+            <column name="pass">123</column>
+            <column name="nombre">juan morales aranguiz</column>
+        </table>
+        <table name="usuario">
+            <column name="user">yerkoandrei</column>
+            <column name="pass">123</column>
+            <column name="nombre">yerko orellana abello</column>
+        </table>
+        <!-- Tabla vinculohashtag -->
+        <table name="vinculohashtag">
+            <column name="id">1</column>
+            <column name="id_comentario">31</column>
+            <column name="hashtag">trabajoPrgr2</column>
+        </table>
+        <table name="vinculohashtag">
+            <column name="id">2</column>
+            <column name="id_comentario">32</column>
+            <column name="hashtag">trabajoPrgr2</column>
+        </table>
+        <table name="vinculohashtag">
+            <column name="id">7</column>
+            <column name="id_comentario">37</column>
+            <column name="hashtag">otro</column>
+        </table>
+        <table name="vinculohashtag">
+            <column name="id">8</column>
+            <column name="id_comentario">38</column>
+            <column name="hashtag">trabajoPrgr2</column>
+        </table>
+        <table name="vinculohashtag">
+            <column name="id">9</column>
+            <column name="id_comentario">39</column>
+            <column name="hashtag">otro</column>
+        </table>
+        <table name="vinculohashtag">
+            <column name="id">11</column>
+            <column name="id_comentario">79</column>
+            <column name="hashtag">trabajoPrgr2</column>
+        </table>
+        <table name="vinculohashtag">
+            <column name="id">12</column>
+            <column name="id_comentario">81</column>
+            <column name="hashtag">otro</column>
+        </table>
+        <!-- Tabla vinculouser -->
+        <table name="vinculouser">
+            <column name="id">1</column>
+            <column name="id_comentario">66</column>
+            <column name="user">andres</column>
+        </table>
+        <table name="vinculouser">
+            <column name="id">2</column>
+            <column name="id_comentario">68</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="vinculouser">
+            <column name="id">3</column>
+            <column name="id_comentario">69</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="vinculouser">
+            <column name="id">4</column>
+            <column name="id_comentario">70</column>
+            <column name="user">juan</column>
+        </table>
+        <table name="vinculouser">
+            <column name="id">5</column>
+            <column name="id_comentario">77</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="vinculouser">
+            <column name="id">6</column>
+            <column name="id_comentario">78</column>
+            <column name="user">yerkoandrei</column>
+        </table>
+        <table name="vinculouser">
+            <column name="id">7</column>
+            <column name="id_comentario">81</column>
+            <column name="user">andres</column>
+        </table>
+    </database>
+</pma_xml_export>
